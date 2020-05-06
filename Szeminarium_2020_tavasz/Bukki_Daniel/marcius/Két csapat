@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <sstream>
+using namespace std;
+
+
+int n, m;
+vector<int>* nodes;
+bool* unvis;
+bool* team;
+
+bool deal()
+{
+	for (int i = 0; i < n; ++i)
+	{
+		if (unvis[i])
+		{
+			queue<int> q;
+			team[i] = false;
+			unvis[i] = false;
+			q.push(i);
+			while (!q.empty())
+			{
+				int j = q.front();
+				q.pop();
+				bool otherteam = !team[j];
+				for (const int& c : nodes[j])
+				{
+					if (unvis[c])
+					{
+						unvis[c] = false;
+						team[c] = otherteam;
+						q.push(c);
+					}
+					else if (team[c] != otherteam)
+						return false;
+				}
+			}
+		}
+	}
+	return true;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	cin >> n >> m;
+	nodes = new vector<int>[n];
+	unvis = new bool[n];
+	team = new bool[n];
+	for (int i = 0; i < n; ++i)
+	{
+		unvis[i] = true;
+		team[i] = false;
+	}
+
+	for (int i = 0; i < m; ++i)
+	{
+		int a, b;
+		cin >> a >> b;
+		--a; --b;
+		nodes[a].push_back(b);
+		nodes[b].push_back(a);
+	}
+
+	if (deal())
+	{
+		ostringstream other;
+		for (int i = 0; i < n; ++i)
+			if (team[i]) cout << i + 1 << " ";
+			else other << i + 1 << " ";
+		cout << endl << other.str() << endl;
+	}
+	else cout << -1 << endl;
+}
