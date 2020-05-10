@@ -1,1 +1,1 @@
-Jó megoldások (nem feltétlenül a legoptimálsiabb, de a bíró szerint OK)
+Jó megoldások (nem feltétlenül a legoptimálisabb, de a bíró szerint OK)
