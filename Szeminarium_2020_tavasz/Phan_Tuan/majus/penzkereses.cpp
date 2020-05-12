@@ -27,14 +27,14 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int n,m,mini;
+    int n,p,mini;
     cin >> n >> p;
     int tomb[n];
     for (int i=0; i<n ;i++){
             cin>>tomb[i];
     }
  
-    mini=smallestSubWithSum(tomb, n, m);
+    mini=smallestSubWithSum(tomb, n, p);
     cout << mini;
     return 0;
 }
