@@ -1,0 +1,1 @@
+Hibás vagy lassú megoldások
